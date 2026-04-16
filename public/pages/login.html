@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login | JobTracker</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+  <div class="auth-container">
+    <div class="auth-card">
+
+      <div class="logo">
+        <span class="logo-icon">💼</span>
+        <h1>JobTracker</h1>
+      </div>
+
+      <h2>Welcome back</h2>
+      <p class="auth-subtitle">Login to your account to continue</p>
+
+      <div class="alert" id="alert"></div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="you@email.com" />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Your password" />
+      </div>
+
+      <button class="btn btn-primary btn-full" id="loginBtn">Login</button>
+
+      <p class="auth-switch">
+        Don't have an account? <a href="/pages/register.html">Create one</a>
+      </p>
+
+    </div>
+  </div>
+
+  <script src="/js/auth.js"></script>
+  <script>
+    if (localStorage.getItem('theme') === 'dark') {
+      document.body.classList.add('dark');
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard | JobTracker</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-brand">
+      <span>💼</span>
+      <span>JobTracker</span>
+    </div>
+    <div class="nav-right">
+      <span class="nav-user" id="navUser"></span>
+      <button class="theme-toggle" id="themeToggle">🌙</button>
+      <button class="btn btn-outline btn-sm" id="logoutBtn">Logout</button>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="dashboard-container">
+
+    <!-- Stats Section -->
+    <div class="stats-grid">
+      <div class="stat-card total">
+        <h3 id="statTotal">0</h3>
+        <p>Total Applied</p>
+      </div>
+      <div class="stat-card applied">
+        <h3 id="statApplied">0</h3>
+        <p>Applied</p>
+      </div>
+      <div class="stat-card interview">
+        <h3 id="statInterview">0</h3>
+        <p>Interview</p>
+      </div>
+      <div class="stat-card offer">
+        <h3 id="statOffer">0</h3>
+        <p>Offer</p>
+      </div>
+      <div class="stat-card rejected">
+        <h3 id="statRejected">0</h3>
+        <p>Rejected</p>
+      </div>
+    </div>
+
+    <!-- Chart Section -->
+    <div class="chart-container">
+      <canvas id="statusChart"></canvas>
+    </div>
+
+    <!-- Actions Bar -->
+    <div class="actions-bar">
+      <input type="text" id="searchInput" placeholder="Search company or position..." />
+      <select id="filterStatus">
+        <option value="">All Status</option>
+        <option value="Applied">Applied</option>
+        <option value="Interview">Interview</option>
+        <option value="Offer">Offer</option>
+        <option value="Rejected">Rejected</option>
+      </select>
+      <button class="btn btn-primary" id="addJobBtn">+ Add Job</button>
+      <button class="btn btn-export" id="exportBtn">⬇ Export CSV</button>
+    </div>
+
+    <!-- Alert -->
+    <div class="alert" id="alert"></div>
+
+    <!-- Jobs Table -->
+    <div class="table-wrapper">
+      <table class="jobs-table">
+        <thead>
+          <tr>
+            <th>Company</th>
+            <th>Position</th>
+            <th>Status</th>
+            <th>Location</th>
+            <th>Salary</th>
+            <th>Applied Date</th>
+            <th>Deadline</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="jobsTableBody">
+        </tbody>
+      </table>
+      <p class="no-jobs" id="noJobs" style="display:none;">No job applications found. Add one to get started!</p>
+    </div>
+
+  </div>
+
+  <!-- Add / Edit Job Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <div class="modal-header">
+        <h2 id="modalTitle">Add Job</h2>
+        <button class="modal-close" id="modalClose">✕</button>
+      </div>
+
+      <div class="alert" id="modalAlert"></div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Company *</label>
+          <input type="text" id="modalCompany" placeholder="e.g. Google" />
+        </div>
+        <div class="form-group">
+          <label>Position *</label>
+          <input type="text" id="modalPosition" placeholder="e.g. Software Engineer" />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Status</label>
+          <select id="modalStatus">
+            <option value="Applied">Applied</option>
+            <option value="Interview">Interview</option>
+            <option value="Offer">Offer</option>
+            <option value="Rejected">Rejected</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Location</label>
+          <input type="text" id="modalLocation" placeholder="e.g. Remote, New York" />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Salary</label>
+          <input type="text" id="modalSalary" placeholder="e.g. $80,000" />
+        </div>
+        <div class="form-group">
+          <label>Apply Date</label>
+          <input type="date" id="modalApplyDate" />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Deadline</label>
+          <input type="date" id="modalDeadline" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Notes</label>
+        <textarea id="modalNotes" placeholder="Any notes about this application..."></textarea>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-outline" id="modalCancelBtn">Cancel</button>
+        <button class="btn btn-primary" id="modalSaveBtn">Save Job</button>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="../js/dashboard.js"></script>
+</body>
+</html>
